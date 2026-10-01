@@ -10,7 +10,7 @@ The window is Sept 8 to 29, 2026, with Sept 1 to 7 kept only as a baseline week.
 MD["data"] = """## 1. Data
 
 Four text sources:
-- **Twitter:** three query families (GEN, RISK and FIN cashtags), with lean sampling aligned to the price bars (30-minute windows in trading hours, 2-hour windows overnight and at weekends). As discussed in class, tweets are filtered to keep the signal-to-noise ratio under control: views ≥ 100, real accounts, no promo, the AI term in the text, at most 5 per author per day, and no duplicates. The waterfall below shows what each filter removes.
+- **Twitter:** three query families (GEN, RISK and FIN cashtags). RISK is pulled as its own sample because risk terms are only 2% to 5% of general AI tweets in a normal hour, so a general sample alone would give about one risk tweet per window, too few for an hourly series; having it separate also lets us test doom talk against the broad AI mood (GEN) and market talk (FIN). Sampling is lean and aligned to the price bars (30-minute windows in trading hours, 2-hour windows overnight and at weekends). As discussed in class, tweets are filtered to keep the signal-to-noise ratio under control: views ≥ 100, real accounts, no promo, the AI term in the text, at most 5 per author per day, and no duplicates. The waterfall below shows what each filter removes.
 - **Reddit:** 7 AI subs and 6 finance subs.
 - **News headlines:** Google News RSS, split into Sacerdote-style outlet groups, plus a non-AI placebo from the same outlets.
 - **arXiv abstracts:** the scientific benchmark.
