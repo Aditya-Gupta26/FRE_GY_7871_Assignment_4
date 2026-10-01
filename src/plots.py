@@ -77,12 +77,12 @@ def _direct_label(ax, s: pd.Series, text: str, color: str):
 
 
 def fig_trend(daily: dict[str, pd.Series], cumret: dict[str, pd.Series], vol: pd.Series,
-              fname: str = "fig1_sentiment_trend.png", ylab: str = "net sentiment (P(pos) - P(neg))",
-              vol_label: str = "RISK tweets\n(est. per day)"):
+              fname: str = "fig1_sentiment_trend.png", ylab: str = "net sentiment\n(P(pos) - P(neg))",
+              vol_label: str = "AI-risk tweets\nper day (est.)"):
     """Top: daily net sentiment per source (3-day MA solid, raw faint). Middle: volume.
     Bottom: cumulative log return of the AI basket vs SPY. Stacked, one axis each."""
-    fig, axs = plt.subplots(3, 1, figsize=(7.2, 4.6), sharex=True,
-                            gridspec_kw={"height_ratios": [2.2, 0.8, 1.4], "hspace": 0.12})
+    fig, axs = plt.subplots(3, 1, figsize=(7.2, 5.0), sharex=True,
+                            gridspec_kw={"height_ratios": [2.2, 1.0, 1.4], "hspace": 0.14})
     ax = axs[0]
     for i, (name, s) in enumerate(daily.items()):
         s = s.copy()
@@ -111,7 +111,7 @@ def fig_trend(daily: dict[str, pd.Series], cumret: dict[str, pd.Series], vol: pd
         ax.plot(s.index, s.values, color=SERIES[i], label=name, drawstyle="default")
         _direct_label(ax, s, name, SERIES[i])
     ax.axhline(0, color=AXIS, lw=0.8)
-    ax.set_ylabel("cumulative log return (%)")
+    ax.set_ylabel("cumulative\nlog return (%)")
     ax.legend(loc="upper left", ncol=len(cumret))
     _events(ax, label=False)
     ax.xaxis.set_major_locator(mdates.DayLocator(interval=3))
@@ -122,11 +122,12 @@ def fig_trend(daily: dict[str, pd.Series], cumret: dict[str, pd.Series], vol: pd
     return FIGURES / fname
 
 
-def fig_granger(irfs: dict[str, dict], heat: pd.DataFrame, fname: str = "fig2_granger.png"):
+def fig_granger(irfs: dict[str, dict], heat: pd.DataFrame, fname: str = "fig2_granger.png",
+                heat_stream: str = "sentiment"):
     """Left: IRF of AI-basket abnormal return to a 1-sd sentiment shock (with 90% bands).
-    Right: per-ticker Granger p-values (sent -> ret), diverging around p = 0.10."""
+    Right: per-ticker Granger p-values for one stream (sent -> ret), darker = smaller p."""
     fig = plt.figure(figsize=(7.2, 2.6))
-    gs = fig.add_gridspec(1, 2, width_ratios=[1.15, 1], wspace=0.35)
+    gs = fig.add_gridspec(1, 2, width_ratios=[1.1, 1], wspace=0.62)
     ax = fig.add_subplot(gs[0])
     for i, (name, r) in enumerate(irfs.items()):
         h = np.arange(len(r["irf"]))
@@ -151,7 +152,7 @@ def fig_granger(irfs: dict[str, dict], heat: pd.DataFrame, fname: str = "fig2_gr
     for (i, j), v in np.ndenumerate(H.to_numpy()):
         ax.text(j, i, f"{v:.2f}", ha="center", va="center", fontsize=6,
                 color="#ffffff" if -np.log10(max(v, 1e-4)) > 1.8 else INK)
-    ax.set_title("Granger p-value by name (sent -> ret)")
+    ax.set_title(f"Granger p-value by name\n({heat_stream} -> return)", fontsize=8)
     cb = fig.colorbar(im, ax=ax, fraction=0.05, pad=0.03)
     cb.set_label("-log10(p)", color=INK2)
     cb.outline.set_visible(False)

@@ -76,5 +76,6 @@ def keyness(texts_a: list[str], texts_b: list[str], top: int = 20, min_count: in
         sign = 1 if a / na > b / nb else -1
         rows.append({"word": w, "docs_A": a, "docs_B": b, "rate_A": a / na, "rate_B": b / nb,
                      "chi2_signed": sign * chi2})
-    out = pd.DataFrame(rows).sort_values("chi2_signed", ascending=False)
+    # ties broken by the word itself, so the order does not depend on set iteration order
+    out = pd.DataFrame(rows).sort_values(["chi2_signed", "word"], ascending=[False, True])
     return out.head(top)

@@ -60,7 +60,7 @@ res["event_windows"] = ev.to_dict("records")
 try:
     vol_daily = pipeline.twitter_volume("D")
     vol_daily.index = vol_daily.index.tz_localize(None)
-    vol_label = "RISK tweets\n(est. per day)"
+    vol_label = "AI-risk tweets\nper day (est.)"
 except Exception as e:  # noqa: BLE001
     print("no twitter volume:", e)
     vol_daily = idx["calendar"][main]["n"]
@@ -184,9 +184,18 @@ if loo is not None:
 heat = pipeline.per_ticker(idx, R, heat_stream)
 pipeline._save(heat, "q2_per_ticker_pvalues")
 res["per_ticker"] = {"stream": heat_stream, "table": heat.round(4).to_dict("index")}
-plots.fig_granger(dict(list(irfs.items())[:3]), heat.loc[[t for t in BASKET] + ["sub_compute", "sub_platforms",
-                                                                               "sub_anthropic_exposed", "EW"]],
-                  fname="figC_irf_heatmap.png")
+# Figure C heatmap uses general-AI Twitter (the Twitter stream with Granger links); the Reddit
+# per-name table above stays saved, since the report's "chip names" claim rests on it
+heat_rows = [t for t in BASKET] + ["sub_compute", "sub_platforms", "sub_ai_native", "sub_anthropic_exposed", "EW"]
+if "tw_GEN" in names:
+    heat_tw = pipeline.per_ticker(idx, R, "tw_GEN")
+    pipeline._save(heat_tw, "q2_per_ticker_pvalues_twitter")
+    res["per_ticker_twitter"] = {"stream": "tw_GEN", "table": heat_tw.round(4).to_dict("index")}
+    plots.fig_granger(dict(list(irfs.items())[:3]), heat_tw.loc[heat_rows], fname="figC_irf_heatmap.png",
+                      heat_stream="Twitter general AI")
+else:
+    plots.fig_granger(dict(list(irfs.items())[:3]), heat.loc[heat_rows], fname="figC_irf_heatmap.png",
+                      heat_stream=heat_stream)
 GRAPH = [k for k in ["tw_GEN", "tw_RISK", "tw_FIN", "reddit_ai", "reddit_fin", "news_ai"] if k in names]
 gg_all = pipeline.granger_grid(idx, R, "AR_EW", "net", lags=(1, 2, 3), perm=False, streams_=GRAPH)
 gg_intra = pipeline.granger_grid(idx, R, "AR_EW", "net", lags=(1, 2, 3), perm=False, streams_=GRAPH,

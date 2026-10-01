@@ -65,7 +65,10 @@ gd = pd.read_csv(TABLES / 'q2_granger_daily.csv', index_col=0)
 gd[['test', 'direction', 'lag', 'N', 'F', 'p', 'p_perm', 'sum_coef']].round(4)"""
 C["var"] = """pd.DataFrame({k: {kk: vv for kk, vv in v.items() if not isinstance(vv, list)}
               for k, v in res['var'].items()}).T.round(4)"""
-C["heat"] = """display(pd.read_csv(TABLES / 'q2_per_ticker_pvalues.csv', index_col=0).round(3))
+C["heat"] = """print('Per-name Granger p-values, Reddit sentiment -> abnormal return (the main lag-3 result):')
+display(pd.read_csv(TABLES / 'q2_per_ticker_pvalues.csv', index_col=0).round(3))
+print('Per-name Granger p-values, general-AI Twitter sentiment -> abnormal return (Figure C, right):')
+display(pd.read_csv(TABLES / 'q2_per_ticker_pvalues_twitter.csv', index_col=0).round(3))
 for f in ['fig2_granger.png', 'figC_irf_heatmap.png']:
     display(Image(filename=str(FIGURES / f), width=900))"""
 C["robust"] = """rob = pd.read_csv(TABLES / 'q2_granger_robustness.csv', index_col=0)
