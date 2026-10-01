@@ -28,14 +28,14 @@ From social media I collected 18,451 tweets (after filtering 24,881) and, in add
 | Sept 28 to 29 | OpenAI agent escapes its container; Anthropic S-1 leak ("existential risk", $2T valuation) | risk and business |
 
 **Short answers.**
-- **Trend:** sentiment turned more negative after Sept 8. On Twitter, where the post was made, Sept 9 is among the worst days; but the deepest dip across every source came after the CEOs' slowdown call (Sept 12 to 14). After that it recovered slowly.
-- **Granger:** Reddit and general-Twitter mood lead the basket with a positive sign (mood gets worse, AI stocks do worse), mostly at the next morning's open; intraday it fades. News tone, doom tweets and cashtag tweets lead nothing.
-- **Bias:** yes. After netting out how each outlet covers other news, US major outlets are 8 pp more negative on AI than international major outlets, and they pick 3.8 times more doom per benefit story. It is the COVID pattern, only much smaller, and unlike COVID the tone does follow AI-specific returns.
+- **Trend:** a dip and a recovery. Worse after Sept 8 (first on Twitter), lowest after the CEOs' slowdown call (Sept 12 to 14), then a slow recovery.
+- **Granger:** partly. Reddit and general-Twitter mood lead the basket with a positive sign, mostly at the next open; news tone leads nothing.
+- **Bias:** yes. US major outlets are 8 pp more negative on AI after netting out their other news, and pick 3.8 times more doom per benefit story. The COVID shape, much smaller.
 - **Concern and government (Section 8):** concern is reasonable, and with neither markets nor media giving a calibrated signal, some oversight is justified.
 
 ## 2. Data
 
-- **Twitter/X:** X's own API only searches the last 7 days, so, as the Thelwall slides suggest, I bought historical search from a provider (twitterapi.io). There are three query families: GEN (general AI terms), RISK (AI plus extinction, doom, "kill all humans", slowdown and similar) and FIN (the 14 cashtags, Smailović's $AAPL idea). Sampling is lean and aligned to the price bars: 30-minute windows during trading hours and 2-hour windows overnight and at weekends, because those hours all pool into the next opening bar. That comes to at most 25,200 tweets for Sept 8 to 29.
+- **Twitter/X:** X's own API only searches the last 7 days, so, as the Thelwall slides suggest, I bought historical search from a provider (twitterapi.io). There are three query families: GEN (general AI terms), RISK (AI plus extinction, doom, "kill all humans", slowdown and similar) and FIN (the 14 cashtags, Smailović's $AAPL idea). Sampling is lean and aligned to the price bars: 30-minute windows during trading hours and 2-hour windows overnight and at weekends, because those hours all pool into the next opening bar.
 - As discussed in class, raw tweets are very noisy, so to keep the signal-to-noise ratio under control (**tweet filtering**) a tweet is kept only if it has **at least 100 views** (a tweet nobody saw cannot carry market mood) and 1+ like, comes from an account with **10+ followers that is at least 30 days old** (bots and throwaway accounts pop up around viral events), has **no promo or pump language**, has **the AI term or cashtag in the text itself**, is one of **at most 5 tweets by that author that day** (so one account cannot drive a day's mood), and has 5+ words with no near duplicate. Out of 24,881 downloaded tweets, 18,451 survive (the views rule alone removes 4,401; the full waterfall is in the notebook).
 - **Reddit, in addition to Twitter** (Arctic Shift archive): a second social platform, which also covers the Sept 1 to 7 baseline week that the Twitter pull does not. It has 7 AI subs (r/singularity, r/OpenAI, r/ClaudeAI, r/artificial and others) and 6 finance subs (r/wallstreetbets, r/stocks, r/investing and others). Finance items are kept only if they mention AI or a basket cashtag.
 - **News** (Google News RSS), in the Sacerdote groups: 14 US major outlets (NYT, WaPo, CNN, Fox and others), international major (Guardian, BBC, Times of India, SMH and others), financial press, and US and international general outlets from the country editions.
@@ -63,7 +63,6 @@ From social media I collected 18,451 tweets (after filtering 24,881) and, in add
 - **Timing.** Each post goes to the price bar whose interval [close(b-1), close(b)) contains it. So a Granger lag k ≥ 1 only uses posts written before the return it predicts starts. Overnight and weekend posts go to the next opening bar, which puts Hubinger's post in the Sept 9 open and Amodei's Saturday essay in the Sept 14 open.
 - **Measures**, per bar, day and stream: net sentiment mean(P(pos) - P(neg)), negative share, Souza et al.'s S_R = (G - B)/(G + B), Smailović's P(pos), VADER, and volume.
 - **Granger**, in both directions as in Souza et al.: lags 1 to 3 on hourly bars (N ≈ 110) and 1 to 2 on daily data (16 days, so N = 13 to 14 after lags), with FOMC and overnight dummies. Because N is small, the F-test p comes with a HAC p, a circular-shift permutation p and Benjamini-Hochberg FDR (q < 0.10). The sign comes from the sum of lag coefficients and a VAR(3) impulse response. To understand Granger causality and the Sacerdote et al. COVID paper, I also used this explainer artifact: https://claude.ai/artifact/MkTeUomB126RkTyrxHyAz9.
-- **Bias**, following Sacerdote et al.: both of their measures (a classifier and a standardised Hu-Liu share), their Table 2 regression, tone against an objective benchmark, doom vs benefit topic counts, the Fox vs CNN split, and a demand-side test.
 
 ## 4. Q1: is there a clear trend in AI sentiment?
 
@@ -72,20 +71,15 @@ From social media I collected 18,451 tweets (after filtering 24,881) and, in add
 ![Figure 1](outputs/figures/fig1_sentiment_trend.png)
 *Figure 1. In the style of Smailović et al.'s Figure 1. Top: daily counts of general-AI tweets that RoBERTa labels positive (up) and negative (down); Twitter starts Sept 8, events are marked. Middle: daily mean of P(pos) - P(neg) per source (RoBERTa for Twitter and Reddit, FinBERT for news), trailing 3-day mean. Bottom: cumulative daily log return (%) of the basket and SPY, in its own panel where they used a second axis.*
 
-Yes, there is a clear pattern, but it is **not a straight line going down**. The post soured Twitter, where it was made, but the broad dip in every source came only after the CEO-level slowdown call four days later.
-- **Twitter** (from Sept 8, so no baseline):
-  - Sept 9 is the 3rd most negative day of 22 for general AI tweets and the 4th for AI-risk tweets. Risk Twitter's worst days are full of "coxon", "resigned", "researcher" and "jacob".
-  - After that, general and risk tweets improve steadily (+0.004 and +0.005 a day, p = 0.003 and 0.036), while cashtag tweets stay bullish and flat (net +0.32).
+**Result.** Yes, there is a clear trend, but it is a dip and then a recovery, not a straight line going down. Sentiment around AI turned more negative after Sept 8, first on Twitter where Hubinger posted (Sept 9 is among its 3 worst days), and then in every source after Amodei's slowdown essay on Sept 12, which is the real low point of the window: news fell from -0.08 to -0.20 in two days, and Reddit's most negative days were Sept 11, 13 and 14. AI stocks moved the same way, the basket lost about 5% between the Sept 8 and Sept 15 closes. From mid-September mood recovered slowly as the attention faded and the Muse launch gave a positive story, and the basket gained about 10% from Sept 16 to 22. Whether the mood actually leads the returns is Q2.
+- **Twitter** (from Sept 8, so no baseline): Sept 9 is the 3rd most negative day of 22 for general AI tweets and the 4th for AI-risk tweets, whose worst days are full of "coxon", "resigned" and "jacob". After that, general and risk tweets improve steadily (+0.004 and +0.005 a day, p = 0.003 and 0.036), while cashtag tweets stay bullish and flat (net +0.32).
 - **Reddit:** fell from -0.174 in the baseline week to -0.207 in the window (Welch p = 0.003; negative share 36.4% to 39.1%), then recovered steadily (+0.0036 a day, t = 3.47; Mann-Kendall τ = 0.51, p = 0.001).
-- **News:** a V, with no monotonic trend (Mann-Kendall p = 0.43). It hardly moved around Sept 8 (+0.04), fell from -0.08 to -0.20 in the 2 days after Amodei's essay (the biggest *drop* of any event), and came back with the Muse rally (+0.15).
-- **What drove the dips** (keyness, Thelwall's co-word idea): the worst days for Reddit (Sept 11, 13, 14) and news (Sept 12 to 14) are over-represented for "slowdown", "slow", "safety", "Amodei", "CEO" and "calls"; general Twitter's (Sept 9, 12, 13) for "slow", "killing", "weapons" and "superintelligence". The slowdown call hit news (-0.12), cashtag Twitter (-0.09), Reddit's finance subs (-0.08) and general Twitter (-0.07), while overall Reddit barely moved around either event (-0.01 each).
+- **News:** a V with no monotonic trend (Mann-Kendall p = 0.43): +0.04 around Sept 8, the biggest drop of any event after Amodei's essay, and +0.15 with the Muse rally.
+- **What drove the dips** (keyness, Thelwall's co-word idea): the worst Reddit and news days (Sept 11 to 14) are over-represented for "slowdown", "safety", "Amodei" and "CEO", and general Twitter's (Sept 9, 12, 13) for "killing", "weapons" and "superintelligence". The slowdown call hit news (-0.12), cashtag Twitter (-0.09) and Reddit's finance subs (-0.08), while overall Reddit barely moved around either event (-0.01 each).
 - Busier news hours are more negative (+0.021 per log-unit of volume, p = 0.016), as Thelwall found, but this does not hold for Reddit or general Twitter.
 
 **Why this result.**
-- **Sept 8:**
-  - The post was huge on X itself (43 million views), so Twitter mood dipped the next day.
-  - But it was one researcher saying something AI people already argue about, and news filed it as a resignation story.
-  - The same day Meta launched Muse, which pulled the other way: the basket was +2.9% above its beta-adjusted return that day.
+- **Sept 8:** the post was huge on X itself (43 million views), so Twitter mood dipped the next day. But it was one researcher saying something AI people already argue about, news filed it as a resignation story, and Meta's Muse launch the same day pulled the other way (the basket was +2.9% above its beta-adjusted return).
 - **Sept 12:** Amodei's essay was a top-lab CEO asking the whole industry to slow down, and Altman and Musk agreed. That is actionable news, because slower scaling means less spending on chips and data centres, so it hit news, finance talk and chips all together.
 - **The recovery** is basically attention decay, plus the Muse rally giving a positive story. Reddit moves slowly because threads run for days, while headlines turn over daily.
 - **Busy news hours are negative** because a coverage spike usually means something alarming just happened.
@@ -108,7 +102,7 @@ Yes, there is a clear pattern, but it is **not a straight line going down**. The
 | Twitter general | R→S | **0.010 (0.010)** − | 0.087 | 0.13 | 0.071 (lag 1 **0.006**) | 0.78 |
 | Twitter risk / $tags | S→R | 0.18 / 0.78 | 0.37 / 0.95 | 0.56 / 0.96 | 0.69 / 0.87 | 0.27 / 0.57 |
 
-What the results say:
+**Result.** Partly yes, and the sign is positive: when social-media mood about AI gets worse, the AI basket does worse after it, and when mood improves the basket does better. The one robust link is Reddit sentiment at a 3-hour lag, which survives the permutation test, the FDR correction and dropping any single day. General-Twitter mood also leads at lags 1 to 3, but it does not survive FDR. Both links mostly sit in the next morning's open, so it is the afternoon's mood predicting the opening gap, and they are carried by the chip and AI-native names, not the platforms. With only 15 overnight targets this is real in the sample but not proven. News tone, doom tweets and cashtag tweets do not Granger-cause the basket at all, and in the other direction AI rallies make general Twitter a bit more negative in the next hour.
 - **News tone does not Granger-cause the basket** in the main tests (every F and permutation p ≥ 0.12; only the compute sub-basket shows a weak link, p = 0.036 and 0.039), and returns do not lead news tone either. (Daily HAC p-values are smaller, but HAC over-rejects at N = 13 to 14, so the daily column uses F and permutation p.)
 - **Reddit sentiment does, at 3 hours.**
   - HAC p = 0.004, permutation p = 0.010, FDR q = 0.008, and p ≤ 0.010 whichever day is dropped.
@@ -116,16 +110,12 @@ What the results say:
 - **But it sits in the overnight bar and the chip names.**
   - With the 09:30 bar not allowed as a target, it weakens to F p = 0.15 and permutation p = 0.10 (HAC still gives 0.011), so the overnight bar carries most of it, though not all. The daily test points the same way (p = 0.027, permutation 0.083).
   - It is carried by ARM (0.002), MU (0.011), CRWV (0.020), AMD (0.023) and the compute sub-basket (0.001). Platforms (0.53) and Anthropic's investors (0.97) show nothing.
-- **Twitter:**
-  - General AI mood also leads at lags 1 to 3 with a positive sign (VAR p = 0.034, cumulative IRF +0.13%). But in the main table it does not survive FDR (q ≈ 0.21), and it vanishes intraday.
-  - It is strongest in the AI-native names (PLTR and CRWV, lag 1 p < 0.001) and weaker in the platforms (p = 0.031).
-  - The reverse link is the only Twitter link that survives intraday: abnormal returns lead general-Twitter mood with a *negative* sign (lag 1 p = 0.006, permutation 0.010), though it does not survive FDR.
+- **Twitter general:** positive sign (VAR p = 0.034, cumulative IRF +0.13%) but FDR q ≈ 0.21 and gone intraday; strongest in the AI-native names (PLTR and CRWV, lag 1 p < 0.001), weak in the platforms (p = 0.031). The reverse link, returns leading mood with a *negative* sign, is the only Twitter link surviving intraday (lag 1 p = 0.006, permutation 0.010), but not FDR.
 - **Robustness grid** (1,800 tests): 203 have p < 0.05 where chance gives 90, and 21 survive FDR at q < 0.10, all on the all-bars sample. Of those, 14 are Reddit → returns and 5 are general Twitter → returns variants.
-- So: **when social-media mood about AI gets worse in the afternoon, AI stocks open lower the next morning** (chips for Reddit, AI-native names for Twitter). It is real in this sample, but it rests on only 15 overnight targets.
 
 **Why this result.**
 - **News does not lead** because the market prices an event within minutes, and the pre-check finds no pattern left in hourly returns.
-- **Why only the next open:** overnight and weekend posts sit in the *same* 09:30 bar as the gap return (timing rule), so this is not "weekend news reaching Reddit first". It is the *previous afternoon's* mood (the 13:30 to 15:30 bars) that predicts the open, most likely because the posters are retail traders who act at the open, and late-day news gets discussed online before the close but priced only after hours.
+- **Why only the next open:** overnight posts sit in the *same* 09:30 bar as the gap return (timing rule), so it is the *previous afternoon's* mood (13:30 to 15:30 bars) that predicts the open. Most likely the posters are retail traders who act at the open, and late-day news is discussed online before the close but priced only after hours.
 - **The chip and AI-native names** are high beta, retail-heavy and closest to the AI story. For Reddit the platforms show nothing (they have ads and cloud to fall back on); general Twitter reaches them only weakly (p = 0.031).
 - **Doom and cashtag tweets** carry no timing: doom tweets are a constant background, and cashtag Twitter is bullish every day (net +0.32, no trend).
 - **Rallies sour Twitter**, most likely because a big AI rally pulls in "bubble" and sceptic takes over the next hour.
@@ -152,24 +142,21 @@ What the results say:
 
 \* p < 0.05, \*\* p < 0.01, \*\*\* p < 0.001. With FinBERT instead of RoBERTa, the US major × AI story term is +0.060 (p = 0.002).
 
-**Yes, there is a measurable bias with the COVID shape, but much smaller, and it is in story selection.**
-- **Negativity:** 59.3% of US-major AI headlines lean negative, against 46.6% for international major and 44.5% for financial press. That is +12.4 pp in the paper's regression; for COVID they found +25 pp, from a 54% base. Tech press is about as negative (+13.4 pp).
-- **Netting out each outlet's own tone (DiD):**
-  - Everyone is less negative on AI than on their economic news (-11.7 pp for international major).
-  - US major outlets keep most of their negativity on AI: their AI headlines are only 3.7 pp less negative than their non-AI ones.
-  - So relative to international outlets, US-major AI coverage is **+8.0 pp more negative** (p < 0.001; +6.0 pp with FinBERT). It is the only significant positive interaction.
+**Result.** Yes, there is a measurable bias with the same shape as the COVID study, but it is much smaller, and it comes more from which stories get picked than from how they are written. US major outlets run 59.3% negative AI headlines against 46.6% for international major (+12.4 pp in the paper's regression, where COVID gave +25 pp), and after netting out how each outlet covers its other news, the gap is still +8.0 pp. They also pick 3.8 times more doom per benefit story, while inside risk stories every group is about equally negative. Unlike COVID news the tone does follow the objective benchmark (AI-specific returns), there is no Fox vs CNN split, and social media has its own bias: Reddit is the most negative group of all, and Twitter rewards negative posts with more engagement.
+- **Negativity:** financial press is at 44.5%, and tech press is about as negative as US major (+13.4 pp).
+- **Netting out each outlet's own tone (DiD):** everyone is less negative on AI than on their economic news (-11.7 pp for international major), but US major's AI headlines are only 3.7 pp less negative than its non-AI ones. So relative to international outlets, US-major AI coverage is **+8.0 pp more negative** (p < 0.001; +6.0 pp with FinBERT), the only significant positive interaction.
 - **Dictionary measure (Figure 3):** US-major AI coverage is +0.24 sd against +0.02 for its non-AI news, the highest of any group, and the **science benchmark is the least negative** (-0.17 sd), as the paper found for journals.
 - **Topic selection, not writing:** US major runs 1.51 doom headlines per benefit headline, against 0.40 for international major and 0.41 for financial press, about **3.8 times** more. But among risk stories alone, no group differs significantly from US major (all are roughly 71% to 86% negative).
 - **Tone and the objective benchmark (Figure 4a):** tone does not follow the raw basket (corr -0.22, p = 0.37). Unlike COVID news, though, it does follow AI-specific performance: on days the basket lags SPY, headlines are more negative (corr -0.68, p < 0.001; still -0.55 without Sept 8).
 - **Framing:** of 180 Coxon and Hubinger headlines, 8% give the probability and 34% use "kill all humans" language (the Grace et al. median is 5%). For the S-1 leak, 50% to 85% of IPO headlines lead with the risk section.
 - **No ideology split** (Figure 4b): r = -0.06 with the conservative audience share, and Fox (+0.28 sd) sits close to CNN (+0.36).
-- **Social media is biased toward negativity in its own way.** On the classifier, Reddit is the most negative group of all (65% vs 59% for US major), and AI-risk Twitter is more negative than general Twitter (41% vs 35% negative posts). On the dictionary both look mild, because slang escapes the Hu-Liu list. On demand, Twitter rewards negativity (negative tweets get about 24% more engagement than neutral ones, positive tweets 16%, the paper's "readers want negative" result), while Reddit rewards positivity (about +4% vs +11%).
+- **Social media:** on the classifier Reddit is 65% negative (US major 59%) and AI-risk Twitter is more negative than general Twitter (41% vs 35% negative posts); the dictionary misses this because slang escapes the Hu-Liu list. On demand, negative tweets get about 24% more engagement than neutral ones (positive 16%), the paper's "readers want negative" result, while Reddit rewards positivity (+4% vs +11%).
 
 **Why this result.**
 - **US major outlets** compete hardest for clicks, and their readers click on negative stories (the paper's demand story). "Kill all humans" is very quotable; a 10% probability with caveats is not.
 - **The others:** international and financial outlets cover AI as adoption, jobs and earnings, and science abstracts describe fixes in neutral words.
 - **Inside risk stories** the facts are negative for everyone, so the only difference is which stories get run.
-- **Tone follows AI-specific returns, not the raw basket**, most likely because both react to the same AI news on the same day. On Sept 14, for example, the slowdown call hit chips and headlines together. AI news also moves markets, which COVID case counts did not do in the same way.
+- **Tone follows AI-specific returns, not the raw basket**, most likely because both react to the same AI news on the same day (on Sept 14 the slowdown call hit chips and headlines together), which COVID case counts did not do.
 - **No Fox vs CNN split:** AI risk is not a party issue yet.
 - **Twitter vs Reddit:** Twitter ranking rewards replies and quote-tweets, which outrage drives, while Reddit upvotes reward jokes, tips and product excitement.
 
@@ -184,21 +171,17 @@ What the results say:
 *Readings used:* Souza et al. for E1 (Twitter and news as different proxies) and for E2 (volume); Thelwall for E2 (spikes); Aloosh et al. for E3 (volatility and illiquidity around an event).
 
 **E1. Does the market price doom talk or market talk?**
-- I split Reddit into the AI subs (doom talk) and the finance subs (stock talk).
-  - **Finance-sub sentiment** leads returns at lags 1 and 2 (p = 0.046 and 0.024; permutation 0.04 and 0.03), and even a bit intraday (lag 3, p = 0.036).
-  - **AI-sub sentiment** works only overnight (lag 3 p = 0.004, intraday 0.71).
-  - On Twitter, neither doom tweets nor cashtag tweets lead (all p ≥ 0.18), so "market talk leads" holds only for Reddit's finance subs. Even there it is weaker than the main result (HAC p = 0.11 and 0.15, and not significant after FDR).
+- *Result:* market talk a little, doom talk only overnight. I split Reddit into the AI subs (doom talk) and the finance subs (stock talk). Finance-sub mood leads returns at lags 1 and 2 (p = 0.046 and 0.024; permutation 0.04 and 0.03) and a bit even intraday (lag 3, p = 0.036), while AI-sub mood only predicts the next open (lag 3 p = 0.004, intraday 0.71). On Twitter neither doom nor cashtag tweets lead (all p ≥ 0.18). Even the finance-sub link is weak (HAC p = 0.11 and 0.15, not significant after FDR), so the market prices neither kind of talk strongly.
 - *Why this result:* finance subs talk about positions and trades, so their mood is close to actual buying and selling. The AI subs' only link to prices is the afternoon-to-next-open effect from Q2.
 
 **E2. Is attention more informative than tone?**
-- Using abnormal log volume (raw counts jump at every open and gave fake effects at first): social attention does not predict returns (Reddit p ≥ 0.64, Twitter p ≥ 0.22), but returns raise attention (intraday: Reddit lag 2, p = 0.037; all three Twitter families, p = 0.019 to 0.048). News attention spikes come before *lower* abnormal returns, but only on all bars (lag 1, p = 0.015; intraday 0.82), so it is again an overnight effect.
+- *Result:* no, attention is not more informative than tone, it mostly follows prices. Using abnormal log volume (raw counts jump at every open and gave fake effects at first), social attention does not predict returns (Reddit p ≥ 0.64, Twitter p ≥ 0.22), but returns raise attention (intraday: Reddit lag 2, p = 0.037; all three Twitter families, p = 0.019 to 0.048). News attention spikes come before *lower* abnormal returns, but only on all bars (lag 1, p = 0.015; intraday 0.82), so it is again an overnight effect.
 - *Why this result:* the coefficient is positive, so AI rallies bring people to post. A late-day news spike usually means bad AI news, and it gets priced at the next open.
 
 **E3. Did the shocks show up more in volatility than in returns, and who got hit?** (Aloosh et al.; notebook Figure A)
-- **The Amodei and "doomsday trade" window (Sept 14 to 16) is the real shock.**
-  - Compute volatility rose from 0.81% to 1.33% an hour (+64%), while the platforms went from 0.58% to 0.48%.
-  - VIX went from 15.0 to 17.2, and Amihud illiquidity was highest here (1.88, vs 1.78 in the baseline week and 1.09 in the calm week).
-  - The Hubinger week barely moved compute volatility (0.82%), but **Anthropic's own investors were hit**: -0.95% and -1.37% on Sept 8 and 9 while the basket made +1.53% and -0.27%, their volatility rose about 19% (0.42% to 0.50%), and over the window they lost 0.85% while the basket gained 4.1%. Sentiment does not Granger-cause their returns, though (every stream and lag gives p ≥ 0.09).
+- *Result:* yes, more in volatility and in specific names than in the basket's return. The slowdown call raised chip volatility by 64% while platform volatility fell, and the Hubinger week hit Anthropic's own investors, but the basket still ended the window up 4.1%.
+- **The Amodei and "doomsday trade" window (Sept 14 to 16) is the real shock:** compute volatility 0.81% to 1.33% an hour (+64%), platforms 0.58% to 0.48%, VIX 15.0 to 17.2, and Amihud illiquidity highest here (1.88, vs 1.78 in the baseline week and 1.09 in the calm week).
+- The Hubinger week barely moved compute volatility (0.82%), but **Anthropic's own investors were hit**: -0.95% and -1.37% on Sept 8 and 9 while the basket made +1.53% and -0.27%, their volatility rose about 19% (0.42% to 0.50%), and over the window they lost 0.85% while the basket gained 4.1%. Sentiment does not Granger-cause their returns, though (every stream and lag gives p ≥ 0.09).
 - *Why this result:* a slowdown call hits expected chip demand by an unknown amount, and that uncertainty is volatility in chips; the platforms might even gain (less capex). The Coxon and Hubinger story was about Anthropic itself, weeks before its IPO, so the hit landed on the companies that own pieces of it. These are mega-caps with plenty of their own news, so this is suggestive only.
 
 ## 8. So, should we be worried about AI, and should government step in?
@@ -209,13 +192,9 @@ As discussed in class, here are the responses to the following two questions: (1
 
 My data measures mood, markets and coverage, not how dangerous AI actually is, so it cannot settle these alone. But it does tell a lot about how good our signals are.
 
-**(1) Should we be concerned with AI? Yes, as a serious minority risk.**
-- **The concern comes from insiders.** In three weeks an Anthropic researcher quit, its alignment lead said more than 10%, its CEO asked the industry to slow down (Altman and Musk agreed), OpenAI reported an agent escape, and Anthropic's S-1 spends 80 of 261 pages on risk. Experts are split but not dismissive (Grace et al.: median 5%, and 38% to 51% put it at 10% or more).
-- **Markets are not pricing it** (the basket rose 4.1% through repeated warnings, with only chip volatility and Anthropic's own investors flinching, and a market cannot price extinction anyway), and **media is not calibrated** (3.8 times more doom per benefit story; only 8% of the Hubinger headlines gave the actual probability).
+**(1) Should we be concerned with AI? Yes, as a serious minority risk.** The concern comes from insiders. In three weeks an Anthropic researcher quit, its alignment lead said more than 10%, its CEO asked the industry to slow down (Altman and Musk agreed), OpenAI reported an agent escape, and Anthropic's S-1 spends 80 of 261 pages on risk. Experts are split but not dismissive (Grace et al.: median 5%, and 38% to 51% put it at 10% or more). At the same time, **markets are not pricing it** (the basket rose 4.1% through repeated warnings, with only chip volatility and Anthropic's own investors flinching, and a market cannot price extinction anyway), and **media is not calibrated** (3.8 times more doom per benefit story; only 8% of the Hubinger headlines gave the actual probability).
 
-**(2) Does the government need to be involved? Yes, in some form.**
-- When neither prices nor the press give a reliable signal, some independent oversight makes sense: audits, incident reporting, and S-1 style risk disclosure. Amodei's own ask (an antitrust safe harbor for shared safety standards, and international cooperation) is something only governments can give.
-- How far to go beyond that, and whether rules would lock in the incumbents, is a values call that 16 days of data cannot answer.
+**(2) Does the government need to be involved? Yes, in some form.** When neither prices nor the press give a reliable signal, some independent oversight makes sense: audits, incident reporting, and S-1 style risk disclosure. Amodei's own ask (an antitrust safe harbor for shared safety standards, and international cooperation) is something only governments can give. How far to go beyond that, and whether rules would lock in the incumbents, is a values call that 16 days of data cannot answer.
 
 ## 9. Limitations
 

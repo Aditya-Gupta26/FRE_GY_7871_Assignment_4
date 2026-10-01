@@ -103,11 +103,11 @@ gs[gs['direction'] == 'sent -> ret'].pivot_table(index=['test', 'lag'], columns=
 
 order = ["intro", "setup", "data", "counts", "validation_md", "validation", "why_validation", "scorer_md",
          "basket_md", "basket", "why_basket",
-         "trend_md", "trend", "how_trend_figs", "why_trend", "events_md", "events", "why_events", "spike_md", "spike", "why_spike",
+         "trend_md", "trend", "how_trend_figs", "why_trend", "events_md", "events", "why_events", "spike_md", "spike", "why_spike", "result_q1",
          "granger_md", "stationarity", "granger", "why_granger", "var_md", "var", "heat", "how_granger_figs", "why_var",
-         "robust_md", "robust", "why_robust", "bias_md", "bias", "how_bias_figs", "why_bias", "lpm_md", "lpm", "why_lpm",
-         "bias_more_md", "bias_more", "why_bias_more", "demand_md", "demand", "why_demand",
-         "extra_md", "e1", "why_e1", "e2_md", "e2", "why_e2", "e3_md", "e3", "how_vol_fig", "why_e3", "wrap"]
+         "robust_md", "robust", "why_robust", "result_q2", "bias_md", "bias", "how_bias_figs", "why_bias", "lpm_md", "lpm", "why_lpm",
+         "bias_more_md", "bias_more", "why_bias_more", "demand_md", "demand", "why_demand", "result_q3",
+         "extra_md", "e1", "result_e1", "why_e1", "e2_md", "e2", "result_e2", "why_e2", "e3_md", "e3", "how_vol_fig", "result_e3", "why_e3", "s8_md", "wrap"]
 nb = nbf.v4.new_notebook()
 for k in order:
     if k in C:
