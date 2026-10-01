@@ -105,7 +105,7 @@ Every scored file has the class `tweet_data.csv` columns (`sentiment`, `positive
 
 ## Submitting
 
-1. **GitHub:** the repo has the notebook with its outputs saved, all code, and `AI_USE.md`. No data files, except the two validation label sheets.
+1. **GitHub:** the repo has the notebook with its outputs saved, all code, every figure in `outputs/figures/` (so `REPORT.md` shows its images on GitHub), and `AI_USE.md`. No data files, except the two validation label sheets.
 2. **Brightspace:** `REPORT.pdf`, plus the repo URL.
 
 The class readings in `Materials/` are not committed.

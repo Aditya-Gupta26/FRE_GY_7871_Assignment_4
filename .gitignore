@@ -17,6 +17,8 @@ venv/
 .DS_Store
 outputs/*
 !outputs/.gitkeep
+!outputs/figures/
+!outputs/figures/*.png
 
 # Our own working build log, not a graded deliverable, kept locally only
 PROGRESS.md
