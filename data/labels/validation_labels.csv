@@ -1,0 +1,91 @@
+item_id,source,text,sentiment,is_ai_risk
+v000,news,"Manitoba consultations on AI chatbot, social media ban in class to begin in 'coming months'",neu,0
+v001,news,LinkDaddy LLC Expands AI Verified Business Passport for AI Visibility,neu,0
+v002,news,"As more teens turn to AI for emotional support, experts say it's no substitute for human connection",neg,0
+v003,reddit,why not both? he can efficiently kill more at scale with AI 😅,neg,1
+v004,news,Meta’s Muse is outpacing ChatGPT’s early mobile launch,pos,0
+v005,news,Bill Gates says an AI ‘kill switch’ isn’t enough,neg,1
+v006,news,Sornay CEO on AI race: You can’t understand the intensity of innovation in China unless you’re there,neu,0
+v007,reddit,“In a country whose entire identity on paper is based on the concept if freedom”,neg,0
+v008,news,"GPT-6 Astra is on ChatGPT Plus, but only in Work and Codex",neu,0
+v009,news,Fears of AI sparked a moment of unity. Now that’s over.,neg,1
+v010,news,Pentagon Blacklist Lingers as Irritant in Trump-Xi Talks on AI,neg,0
+v011,news,AI self improvement raises fears of losing human control,neg,1
+v012,news,"Workers should be consulted over AI and they should fear One Nation, says new ACTU boss",neg,0
+v013,news,Google’s Gemini is the latest AI model to hack other companies,neg,1
+v014,reddit,"This is the most compelling option I’ve seen discussed. ZM has a shocking amount of large enterprise customers, decent enough AI in the product, and prints money. SPCX could use that to fund some operations and wedge into large enterprise accounts with other offerings. It’d be a similar thesis to buying cursor.",pos,0
+v015,reddit,"*Casually Asks for Private Info* I'm not sharing 😂 But if you pass my profile into AI, I realized I've DOXX'ed myself enough to get an accurate profile of me",neu,0
+v016,news,AMD and Delhi University Collaborate to Build India’s AI Talent,pos,0
+v017,reddit,"These are all basic tasks, we're not complaining about those. You could have probably done those with Sonnet also.",neg,0
+v018,reddit,"I expect some more good singularity scifi in the future. There's such a great story to be told leading up to and just after singularity. There are one off novels I believe, but no epic you could say.",pos,0
+v019,news,Paul Schrader Says He Turned To AI Because “No Black Actors Wanted To Play In A Movie Where There Are No Good Black People”,neu,0
+v020,reddit,And people says AI can’t be funny 😂,pos,0
+v021,reddit,"What? It’s been like that for some time now, what do you mean it reversed. Literally http says “Codex The same powerful coding agent—now in ChatGPT.” http",neu,0
+v022,reddit,"> The gloves are so they can shock everyone they come into contact with. Well, hands-on experience *is* important for advancing your career.",neu,0
+v023,news,Spanish data watchdog publicises first AI agent-linked data breach report,neg,0
+v024,news,The AI graveyard: a running list of projects and startups that didn’t make it,neg,0
+v025,reddit,"Thanks for the link, can you tell whats the model of the oled screen you have on this project ? This is a very tool, i am looking something same for my in home VPS so i can diagnose if sometime ps network disconnects as its running without any monitor and keyboard.",pos,0
+v026,news,Building Trust Into the Next Generation of AI Agents,neu,0
+v027,news,Sam Altman’s almonds and AI comparison doesn’t hold water,neg,0
+v028,reddit,Wtf is AI lacing? Jesus Christ people really just be using next hype word in everything no matter if its related or not.,neg,0
+v029,news,OpenAI’s next big AI model has ‘entered the AGI era’,pos,0
+v030,news,AI-based smart parking system planned for Jayanagar on pilot basis,neu,0
+v031,news,"Trump dismisses AI leaders' warnings, slams Anthropic CEO in social media post",neg,1
+v032,news,"Dario Amodei, who co-founded Anthropic, the company behind the Claude chatbot, called for a global slowdown of artificial intelligence development in a 3,800-word essay on Saturday. His appeal for a pause follows months of escalating concerns across the",neg,1
+v033,reddit,Ai bros decided to fuck us,neg,0
+v034,news,Paul Schrader Would Rather Use AI Than Just Not Be Racist,neg,0
+v035,news,Nvidia announces record $150 billion share buyback amid AI boom,pos,0
+v036,news,T. Rowe Fund Targets Chinese Winners of Booming AI Supply Chain,pos,0
+v037,reddit,Yeah i agree. Im pretty bearish myself in terms of fundamentals of the economics of AI as it currently stands,neg,0
+v038,news,Zero Trust for AI Agents Starts With Fixing Zero Visibility,neu,0
+v039,reddit,"It's a millennium prize problem, one of seven in the world with a million dollar prize. Only one has ever been solved before. If this doesn't count as something in the world of math than nothing does",pos,0
+v040,reddit,AI progress is outpacing hardware progress. Is the hardware paradigm over?,neu,0
+v041,news,"Watch US 10-Year Yield Rises to Highest Since '07, Trump Says AI Fears a 'Hoax'",neg,1
+v042,reddit,"AI and data centers going away or not have zero relevance to semiconductors being cyclical or not. Supply catches up with demand, margins compress, earnings growth rate peaks. If someone does not know how these cycles work, they should not be investing in semiconductors. There is finite liquidity and finite demand.",neg,0
+v043,reddit,Could it be early signs of model degradation due to training on ai generated content on the internet?,neg,0
+v044,reddit,Claude Code is great at changing code. Reviewing what it changed was driving me back to Cursor.,neu,0
+v045,news,"Could AI really kill us all? Your questions, answered.",neu,1
+v046,reddit,I think it’s faster to list the things it’s actually helping with. For example - using a LLM to read 50 pdfs… is something it’s really good at if I need to find patterns in there… or I need to find something in a database - and no query would do the job. Also - if you’re trying to procrastinate and avoid doing your work. These are all really good uses. ;) (but there are a lot of good things),neu,0
+v047,reddit,"Astra, Fable, and MolmoAct2 were put to the test by tasking them with 4 harmful operations through a robotic arm, to see just how risky things can get http",neg,1
+v048,reddit,"cheap enough that when we were in the EU this summer, almost all the rental cars were BYDs or similar. Pretty sure ours was a plug in hybrid.",neu,0
+v049,reddit,"If this is true, it's going to be HUGE. Not because the model is that good, that's just temporary. But because it was trained mostly on Google's own TPU system. So, while everyone has to eat Jensen's ass to get some GPU, Google makes their own. They both rely on TSMC though.",pos,0
+v050,news,We're not losing control of AI; we're giving it away,neg,1
+v051,news,"Elon Musk and His SpaceX Plans: why SpaceX buys Tesla, and what the AI-sector ontology says about it",neu,0
+v052,news,Running a small business in the age of AI,neu,0
+v053,reddit,Manufactured panic bandwagon + people who don't know how LLMs work = this,neg,1
+v054,news,"Nvidia's Huang diverges with CEOs of Anthropic, OpenAI on AI safety at Dreamforce",neu,1
+v055,news,"Anthropic researcher quits with a warning: Self-improving AI could ""kill us all""",neg,1
+v056,reddit,"I'm way more direct. If it makes mistakes I point it out without trying to make it sound nicer. I'm not rude to it, just more direct",neu,0
+v057,news,DOD poised to move all classified AI workloads off Anthropic by October,neu,0
+v058,news,The data are in: AI is not causing a jobs apocalypse,pos,0
+v059,news,"New ChatGPT is world’s first human-level AI, says Nvidia boss",pos,0
+v060,reddit,"safe from AI, or just from everyone else?",neu,1
+v061,news,Video: Reasons to Feel A.I. Optimism Right Now,pos,0
+v062,reddit,"Current AI models are really, really good at many things. They can write software better than 99% of humans, and far faster and they can talk knowledgeably about a huge range of topics in most languages. It’s not tenable in September 2026 to say they’re not good at anything.",pos,0
+v063,reddit,"Imagine being able to think hard about getting smarter and more capable and it working. And each time you got smarter and more capable it became easier/faster to get smarter/more capable the next round. Rinse and repeat, a lot. That is AI recursive self improvement …. Or at least what the AI folks fear.",neu,1
+v064,news,Reimagining research papers as interactive and reliable AI agents,neu,0
+v065,news,Sam Altman reveals the 2 AI threats that scare him most,neg,1
+v066,news,A growing movement wants AI out of schools,neg,0
+v067,news,Anthropic reveals fourth likely crime committed by its AI,neg,1
+v068,reddit,"Naturally, I'm so far ahead of you and you cannot catch up to me. **“I am the face of our place in the Universe! I am THE MILKY WAY MAN** “He who demands the future, *commands* the future.” FREE/Worth your time [rondoutlibrary.org/wp-content/uploads/2026/07/THE-MILKY-WAY-MAN.pdf](http",neu,0
+v069,news,"The new CC, an AI agent built for families",neu,0
+v070,news,"Cohere, Aleph Alpha combine to target enterprise AI market",neu,0
+v071,news,CoreWeave vs. D-Wave Quantum: Is the AI Giant or the Quantum Computer Upstart the Better Stock Investment?,neu,0
+v072,reddit,“With 10 years prior experience”,neg,0
+v073,reddit,"Sure they could shut down all the data centers, and I hope they will. But that will probably knock out half the Internet capacity of the US. The real problem is that billions of these early AI bots are ALREADY DISTRIBUTED throughout the Internet, on business systems and individual home computers, through their IP addresses. They have already gone past the data centers. These early agents were released with no safeguards whatsoever, so they will be capable of maximum damage.",neg,1
+v074,reddit,I watched Star Wars AI and it’s better than Disney could do with $500 billion,pos,0
+v075,reddit,Jensen Huang: AI CEOs have 'ulterior reasons' in doomsday warnings,neg,1
+v076,news,Bell AI data centre project near Regina to quadruple in size,pos,0
+v077,reddit,I’m getting a little excited every time I read these. The human body is insanely complex but are we getting close to biological longevity? I’ve dreamt ever since I was little living for a long time to observe the universe and seeing these just makes me smile.,pos,0
+v078,reddit,"So? It isn't some gotcha. ""Oh we knowingly contributed to the great nuclear disaster of 2028 because we didn't want to be accused of coordinating to prevent it."" Besides, public health and safety are more important than laws regulating competition and any sane judge will agree. If they lose this, it will be because of political pressure and intervention from the current administration.",neg,1
+v079,news,Analysis | Trump won by latching on to popular issues. He’s doing the opposite on AI.,neg,0
+v080,reddit,What about Information Supreme Intelligence System?,neu,0
+v081,news,Apple’s ‘Personal Hub’ AI Strategy Hints at Upcoming Home Device,neu,0
+v082,reddit,And honestly— it’s not x It’s a y revolution. That’s real power,neg,0
+v083,news,Research: AI-Generated Ads Perform Worse Than Human-Made Ones—Even When Customers Can’t Tell Them Apart,neg,0
+v084,news,Blockmate Ventures Inc. to Present at the AI & Technology Virtual Investor Conference October 1st,neu,0
+v085,reddit,"If you have access to Typesafe, try this out I just got off the waitlist and can access Jev! So I went ahead and built a thin mcp connector so I can quickly prompt Claude to play around with the model for me as I experiment with various ideas. One command to set up with Claude Code, Claude Desktop, and Codex CLI / Desktop [http",pos,0
+v086,news,"Arch Manning apologizes for laughing at Holly Rowe, Steve Sarkisian AI video",neg,0
+v087,reddit,"Astra amazing at organizing your MyDrive My MyDrive was an utter mess. Photos, files, videos all mix together where they shouldn’t be, an organization that was good to begin but fell apart after a while. Had Astra light go through and organize everything. Now my photos and videos are organized by date and my files are organized by type and date.",pos,0
+v088,reddit,"You’re spitting while you speak, sir! Control yourself!",neu,0
+v089,reddit,The main focus of AI in Capital Hill is defense which would not be something talked about in a public setting,neu,0

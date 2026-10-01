@@ -1,0 +1,25 @@
+# Data is not committed. Everything under data/ is reproducible from scripts/,
+# except the two blind validation label sheets, the only thing that cannot be re-pulled.
+data/**
+!data/
+!data/*/
+!data/**/.gitkeep
+!data/labels/validation_labels.csv
+!data/labels/validation_labels_twitter.csv
+!data/labels/LABELLING_GUIDE.md
+
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+.DS_Store
+outputs/*
+!outputs/.gitkeep
+
+# Our own working build log, not a graded deliverable, kept locally only
+PROGRESS.md
+
+# Class readings and slides, not ours to redistribute
+Materials/
